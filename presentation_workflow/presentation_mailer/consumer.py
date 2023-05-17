@@ -14,11 +14,11 @@ django.setup()
 
 
 while True:
-    parameters = pika.ConnectionParameters(host='rabbitmq')
-    connection = pika.BlockingConnection(parameters)
-    channel = connection.channel()
 
     try:
+        parameters = pika.ConnectionParameters(host='rabbitmq')
+        connection = pika.BlockingConnection(parameters)
+        channel = connection.channel()
         def process_approval(ch, method, properties, body):
             content = json.loads(body)
             name = content["presenter_name"]
